@@ -60,7 +60,7 @@ public class T6P2Ej1 {
          listaEstudios[3]=new Estudio("20Th Century Fox", "Los Angeles"," C/ e","www.fox.es",formato.parse("1953-09-23"),"EEUU",telefonos);
         
     }
-    public static void crearPeli(){
+    public static void crearPeli() throws Exception{
         listaPeliculas =new ArrayList();
         
         //Creacion de las peliculas:
@@ -70,21 +70,42 @@ public class T6P2Ej1 {
         lista.add(listaEstudios[0]);
         lista.add(listaEstudios[1]);
         Pelicula p= new Pelicula( "ET", 1980, 87, "Infantil", lista);
+        listaPeliculas.add(p);
         
         
         lista=new ArrayList();
         lista.add(listaEstudios[2]);
         p=new Pelicula ("El Señor De Los Anillos", 2001, 203, "Fantasia", lista);
+        listaPeliculas.add(p);
         
         lista=new ArrayList();
         lista.add(listaEstudios[3]);
         p=new Pelicula("Titanic", 1997, 120, "Romantico", lista);
+        listaPeliculas.add(p);
         
     }
-    public static void pedirPeliMasLarga(){
+    public static void pedirPeliMasLarga() throws Exception{
+        float maxDuracion=0;
+        String peli="";
         
+        
+        for(int x=0;x<listaPeliculas.size() && listaPeliculas.get(x).getDuracion()>maxDuracion;x++){
+            
+                maxDuracion=listaPeliculas.get(x).getDuracion();
+                peli=listaPeliculas.get(x).toString();
+    
+        }
+       
+    
+       String mensaje="";
+       for(int x=0;x<listaPeliculas.size() && listaPeliculas.get(x).getDuracion() !=maxDuracion;x++){
+           for(int y=0; y<listaPeliculas.get(x).getLista().size();y++)
+           mensaje=peli+"\nProducida por: "+ listaPeliculas.get(x).getLista().get(x).getNombre();
+       }
+       JOptionPane.showMessageDialog(null, mensaje);
     }
-    public static void pedirEstudioConMasPelis(){
+    
+    public static void pedirEstudioConMasPelis()throws Exception{
         
     }
 }

@@ -69,6 +69,12 @@ public class Pelicula {
     public void setLista(ArrayList<Estudio> lista) {
         this.lista = lista;
     }
+
+    @Override
+    public String toString() {
+        return   "Titulo=" + Titulo + "\nAño=" + Año + "\nDuracion=" + Duracion + " minutos\nTipo=" + Tipo;
+    }
+    
     
     
 }
