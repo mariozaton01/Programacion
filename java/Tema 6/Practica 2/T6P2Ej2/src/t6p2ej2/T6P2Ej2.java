@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package t6p2ej1;
+package t6p2ej2;
 
-import Clases.*;
+import Clases.Estudio;
+import Clases.Pelicula;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author 1GDAW08
  */
-public class T6P2Ej1 {
+public class T6P2Ej2 {
 
     /**
      * @param args the command line arguments
@@ -23,11 +23,13 @@ public class T6P2Ej1 {
      private static ArrayList<Pelicula> listaPeliculas;
     public static void main(String[] args) {
         // TODO code application logic here
+        
         try{
         crearEstudio();
         crearPeli();
-        pedirPeliMasLarga();
+        estudioConPeliMasLarga();
         pedirEstudioConMasPelis();
+        
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error");
@@ -81,11 +83,12 @@ public class T6P2Ej1 {
         
         lista=new ArrayList();
         lista.add(listaEstudios[3]);
-        p=new Pelicula("Titanic", 1997, 120, "Romantico", lista);
+        lista.add(listaEstudios[0]);
+        p=new Pelicula("Titanic", 1997, 220, "Romantico", lista);
         listaPeliculas.add(p);
         
     }
-    public static void pedirPeliMasLarga() throws Exception{
+    public static void estudioConPeliMasLarga() throws Exception{
         float maxDuracion=0;
         Pelicula peli=null;
         
@@ -94,21 +97,21 @@ public class T6P2Ej1 {
             if(listaPeliculas.get(x).getDuracion()>maxDuracion){
                 maxDuracion=listaPeliculas.get(x).getDuracion();
                 peli=listaPeliculas.get(x);
+                
             }
     
         }
        
     
        String mensaje=" Producida por: ";
-       
-           for(int x=0; x<listaPeliculas.get(x).getLista().size();x++)
+       int x;
+           for(x=0; x<listaPeliculas.get(x).getLista().size();x++)
            mensaje= mensaje +" "+ peli.getLista().get(x).getNombre();
            
        
-       JOptionPane.showMessageDialog(null, peli+ mensaje);
+       JOptionPane.showMessageDialog(null,listaPeliculas.get(x).getTitulo() + mensaje);
     }
-    
-    public static void pedirEstudioConMasPelis()throws Exception{
+     public static void pedirEstudioConMasPelis()throws Exception{
         
         int numeroPelis[]=new int[4];
         numeroPelis[0]=0;
@@ -144,5 +147,6 @@ public class T6P2Ej1 {
             }
          JOptionPane.showMessageDialog(null, "El estudio con mas peliculas es "+ listaEstudios[posicion].getNombre()+ " con un total de "+ maximo);
     }
-   
 }
+    
+
