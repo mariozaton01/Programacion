@@ -11,26 +11,28 @@ package Clases;
  */
 public class Asiento {
     
-    private int NumAsientos;
+    private int NumAsiento;
     private boolean Estado;
     private String Compartimento;
+    private Pasajero Pasajer;
     
     /*Constructor*/
 
-    public Asiento(int NumAsientos, boolean Estado, String Compartimento) {
-        this.NumAsientos = NumAsientos;
+    public Asiento(int NumAsiento, boolean Estado, String Compartimento) {
+        this.NumAsiento = NumAsiento;
         this.Estado = Estado;
         this.Compartimento = Compartimento;
+        
     }
     
     /*Get &Set*/
 
     public int getNumAsientos() {
-        return NumAsientos;
+        return NumAsiento;
     }
 
     public void setNumAsientos(int NumAsientos) {
-        this.NumAsientos = NumAsientos;
+        this.NumAsiento = NumAsientos;
     }
 
     public boolean isEstado() {
@@ -48,6 +50,15 @@ public class Asiento {
     public void setCompartimento(String Compartimento) {
         this.Compartimento = Compartimento;
     }
+
+    public Pasajero getPasajer() {
+        return Pasajer;
+    }
+
+    public void setPasajer(Pasajero Pasajer) {
+        this.Pasajer = Pasajer;
+    }
+    
     
     /*Metodos*/
     

@@ -5,18 +5,24 @@
  */
 package Clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 1GDAW08
  */
 public class Directivo extends Empleado {
     
-    private String Categoria;
+    private String Categoria;  
+    ArrayList<Empleado> Subordinados;
 
-    public Directivo(String Categoria, float Sueldo_bruto, String Nombre, int Edad) {
-        super(Sueldo_bruto, Nombre, Edad);
+    public Directivo(String Categoria, String Nombre, int Edad, float Sueldo_bruto) {
+        super(Nombre, Edad, Sueldo_bruto);
         this.Categoria = Categoria;
+        this.Subordinados= new ArrayList();
     }
+
+    
     
     
     /*Getter & Setter*/
@@ -28,12 +34,21 @@ public class Directivo extends Empleado {
     public void setCategoria(String Categoria) {
         this.Categoria = Categoria;
     }
+
+    public ArrayList<Empleado> getSubordinados() {
+        return Subordinados;
+    }
+
+    public void setSubordinados(ArrayList<Empleado> Subordinados) {
+        this.Subordinados = Subordinados;
+    }
     
-    /*Matodos*/
+    
+    /*Metodos*/
 
     @Override
     public String toString() {
-        return  "Nombre: "+super.getNombre()+"\nEdad: "+ super.getEdad()+"\nSueldo Bruto: "+ super.getSueldo_bruto() +"\nCategoria: " + Categoria;
+        return  "Nombre: "+this.getNombre()+"\nEdad: "+ this.getEdad()+"\nSueldo Bruto: "+ this.getSueldo_bruto() +"\nCategoria: " + this.Categoria;
     }
     
     

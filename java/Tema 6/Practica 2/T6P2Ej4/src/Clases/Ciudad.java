@@ -5,6 +5,8 @@
  */
 package Clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mario
@@ -13,6 +15,7 @@ public class Ciudad {
     
     private String CodigoCiudad;
     private String Nombre;
+    private ArrayList<Vuelo> Vuelos;
     
     /*Constructor*/
 
@@ -38,6 +41,14 @@ public class Ciudad {
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
+
+    public ArrayList<Vuelo> getVuelos() {
+        return Vuelos;
+    }
+
+    public void setVuelos(ArrayList<Vuelo> Vuelos) {
+        this.Vuelos = Vuelos;
+    }
     
     /*Metodos*/
     
@@ -47,4 +58,5 @@ public class Ciudad {
     public Ciudad obtener(){
         
     }
+    
 }

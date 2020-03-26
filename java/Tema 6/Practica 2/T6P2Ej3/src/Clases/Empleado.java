@@ -18,7 +18,7 @@ public class Empleado extends Persona{
 
     
     
-    public Empleado(float Sueldo_bruto, String Nombre, int Edad) {
+    public Empleado( String Nombre, int Edad,float Sueldo_bruto) {
         super(Nombre, Edad);
         this.Sueldo_bruto = Sueldo_bruto;
     }
@@ -37,7 +37,7 @@ public class Empleado extends Persona{
 
     @Override
     public String toString() {
-        return "Nombre: "+super.getNombre()+"\nEdad: "+ super.getEdad()+ "\n Sueldo Bruto: "+Sueldo_bruto;
+        return "Nombre: "+this.getNombre()+"\nEdad: "+ this.getEdad()+ "\nSueldo Bruto: "+this.Sueldo_bruto;
     }
 
     public double calcularSalarioNeto(){

@@ -16,6 +16,7 @@ public class Pasajero {
     private String Apellido;
     private String Sexo;
     private int Edad;
+    private Asiento asient;
     
     /*constructor*/
 
@@ -68,6 +69,16 @@ public class Pasajero {
     public void setEdad(int Edad) {
         this.Edad = Edad;
     }
+
+    public Asiento getAsient() {
+        return asient;
+    }
+
+    public void setAsient(Asiento asient) {
+        this.asient = asient;
+    }
+    
+    
     
     /*Metodos*/
     

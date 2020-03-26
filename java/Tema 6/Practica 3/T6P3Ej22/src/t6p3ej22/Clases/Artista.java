@@ -3,22 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Clases;
+package t6p3ej22.Clases;
+
+import java.time.LocalDate;
 
 /**
  *
- * @author 1GDAW08
+ * @author mario
  */
-public class Empresa {
-    
-    
+public class Artista {
     private String Nombre;
+    private LocalDate FechaNac;
 
-    public Empresa(String Nombre) {
-        this.Nombre = Nombre;
+    public Artista() {
     }
-    
-    /*Getter & Setter*/
+
+    public Artista(String Nombre, LocalDate FechaNac) {
+        this.Nombre = Nombre;
+        this.FechaNac = FechaNac;
+    }
 
     public String getNombre() {
         return Nombre;
@@ -28,9 +31,12 @@ public class Empresa {
         this.Nombre = Nombre;
     }
 
-    @Override
-    public String toString() {
-        return "Nombrede la empresa:" +this.Nombre;
+    public LocalDate getFechaNac() {
+        return FechaNac;
+    }
+
+    public void setFechaNac(LocalDate FechaNac) {
+        this.FechaNac = FechaNac;
     }
     
     

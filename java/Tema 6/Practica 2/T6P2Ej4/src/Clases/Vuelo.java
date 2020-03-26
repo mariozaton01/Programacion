@@ -20,6 +20,7 @@ public class Vuelo {
     private Date FechaSalida;
     private Date FechaRegreso;
     private String TipoVuelo;
+    private Ciudad Ciuda;
     
     /*Constructor*/
 
@@ -99,6 +100,15 @@ public class Vuelo {
     public void setTipoVuelo(String TipoVuelo) {
         this.TipoVuelo = TipoVuelo;
     }
+
+    public Ciudad getCiuda() {
+        return Ciuda;
+    }
+
+    public void setCiuda(Ciudad Ciuda) {
+        this.Ciuda = Ciuda;
+    }
+    
     
     /*Metodos*/
     

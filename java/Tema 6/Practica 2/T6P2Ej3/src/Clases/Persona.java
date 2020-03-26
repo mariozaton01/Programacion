@@ -40,7 +40,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "Nombre=" + Nombre + ", Edad=" + Edad + '}';
+        return "Persona{" + "Nombre=" + this.Nombre + ", Edad=" + this.Edad + '}';
     }
 
    
