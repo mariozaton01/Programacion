@@ -28,24 +28,36 @@ public class T6P3Ej22 {
      static Artista artis;
     public static void main(String[] args) {
         // TODO code application logic here
-        crearObra();
-        crearArtista();
+        char continuar;
+        do{
+         crearObra();
+         continuar=JOptionPane.showInputDialog("¿Quiere seguir introduciendo obras?\ns/n.").charAt(0);
+        }
+        while( continuar=='s');
+        
+        sacarObra();
+        
+        
     }
     public static void crearObra(){
-        String opciones= JOptionPane.showInputDialog("Que tipo de obra quieres crear?\n Libro/ Pelicula/ Disco");
+        String opciones= JOptionPane.showInputDialog("Que tipo de obra quieres crear?\n Libro/ Pelicula/ Disco").toLowerCase();
         switch(opciones){
-            case opciones.equals(lib) :
+            case ("libro"):
                  lib=new Libro();
         
                 lib.setTitulo(validarTitulo());
                 lib.setAnoEdicion(validarAño());
                 lib.setNumPaginas(validarNumPag());
                 lib.setEditorial(validarEditorial());
+                
+                artis= new Artista();
+                artis=crearArtista();
 
                 
                 listaObras.add(lib);
+                ListaArtistas_Obras.set(artis);
             break;
-            case Pelicula:
+            case ("pelicula"):
                  peli= new Pelicula();
                 
                 peli.setTitulo(validarTitulo());
@@ -55,7 +67,7 @@ public class T6P3Ej22 {
                 
                 listaObras.add(peli);
             break;
-            case Disco:
+            case ("disco"):
                 disc= new Disco();
                 disc.setTitulo(validarTitulo());
                 disc.setDiscografica(validarDisco());
@@ -64,22 +76,24 @@ public class T6P3Ej22 {
 
                 listaObras.add(disc);
             break;
+            
         }
   
     }
-    public static void crearArtista(){
-        artis= new Artista();
+    public static Artista crearArtista(){
+        
         artis.setNombre(validarNombre());
         artis.setFechaNac(LocalDate.MIN);
         
         listaArtistas.add(artis); 
+        return artis;
     }
     public static String validarTitulo(){
         boolean proceso= false;
         String titulo;
         do{
             titulo=JOptionPane.showInputDialog("Titulo de la obra:");
-            Pattern p= Pattern.compile("^([A-z1-9,.-]+?[ ])+$");
+            Pattern p= Pattern.compile("^(([A-z1-9,.-]+)?[ .])+$");
             Matcher m= p.matcher(titulo);
             
             if (m.matches())
@@ -115,7 +129,7 @@ public class T6P3Ej22 {
         String numString;
         do{
             numString=JOptionPane.showInputDialog("Numero de Paginas:");
-            Pattern p= Pattern.compile("^[0-9]{4}$");
+            Pattern p= Pattern.compile("^[0-9]{2}$");
             Matcher m= p.matcher(numString);
             
             if (m.matches())
@@ -132,7 +146,7 @@ public class T6P3Ej22 {
         String editorial;
         do{
             editorial=JOptionPane.showInputDialog("Editorial:");
-            Pattern p= Pattern.compile("^([A-z]+?[ ])+$");
+            Pattern p= Pattern.compile("^(([A-z1-9,.-]+)?[ .])+$");
             Matcher m= p.matcher(editorial);
             
             if( m.matches())
@@ -148,7 +162,7 @@ public class T6P3Ej22 {
         String productora;
         do{
             productora=JOptionPane.showInputDialog("Productora:");
-            Pattern p= Pattern.compile("^([A-z]+?[ ])+$");
+            Pattern p= Pattern.compile("^(([A-z1-9,.-]+)?[ .])+$");
             Matcher m= p.matcher(productora);
             
             if( m.matches())
@@ -211,7 +225,29 @@ public class T6P3Ej22 {
         canciones= Integer.parseInt(cancionesString);
         return canciones; 
     }
-    
-    
-   
+    public static String validarNombre(){
+        boolean proceso= false;
+        String nombre;
+        do{
+            nombre=JOptionPane.showInputDialog("Nombre del artista:");
+            Pattern p= Pattern.compile("^(([A-z]+)?[ .])+$");
+            Matcher m= p.matcher(nombre);
+            
+            if(m.matches())
+                proceso=true;
+            else
+                JOptionPane.showMessageDialog(null, "El nombre no cumple con el formato requerido, vuelve a intentarlo");
+    } 
+        while(proceso==false);
+        return nombre;
+  
+}
+    public static void sacarObra(){
+        String obra =JOptionPane.showInputDialog("Titulo de la obra que quieres sacar:");
+        int x;
+        
+        for(x=0;x<listaObras.size() && !obra.equalsIgnoreCase(listaObras.get(x).getTitulo());x++){
+            
+        }
+    }
 }

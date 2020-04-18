@@ -5,6 +5,8 @@
  */
 package t6p3ej22.Clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mario
@@ -16,8 +18,8 @@ public class Disco extends Obra{
     public Disco() {
     }
 
-    public Disco(String Discografica, int NumCanciones, String Titulo, int AnoEdicion) {
-        super(Titulo, AnoEdicion);
+    public Disco(String Discografica, int NumCanciones, String Titulo, int AnoEdicion,ArrayList listaArtistas_Obra) {
+        super(Titulo, AnoEdicion, listaArtistas_Obra);
         this.Discografica = Discografica;
         this.NumCanciones = NumCanciones;
     }

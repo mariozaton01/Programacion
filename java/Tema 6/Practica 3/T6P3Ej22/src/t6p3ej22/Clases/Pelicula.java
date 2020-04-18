@@ -5,6 +5,8 @@
  */
 package t6p3ej22.Clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mario
@@ -16,11 +18,13 @@ public class Pelicula extends Obra {
     public Pelicula() {
     }
 
-    public Pelicula(String Productora, int Duracion, String Titulo, int AnoEdicion) {
-        super(Titulo, AnoEdicion);
+    public Pelicula(String Productora, int Duracion, String Titulo, int AnoEdicion, ArrayList listaArtistas_Obra) {
+        super(Titulo, AnoEdicion, listaArtistas_Obra);
         this.Productora = Productora;
         this.Duracion = Duracion;
     }
+
+    
 
     public String getProductora() {
         return Productora;
@@ -37,6 +41,7 @@ public class Pelicula extends Obra {
     public void setDuracion(int Duracion) {
         this.Duracion = Duracion;
     }
+    
      
      
 }

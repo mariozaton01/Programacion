@@ -5,6 +5,8 @@
  */
 package t6p3ej22.Clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mario
@@ -16,8 +18,8 @@ public class Libro extends Obra{
     public Libro() {
     }
 
-    public Libro(String Editorial, int NumPaginas, String Titulo, int AnoEdicion) {
-        super(Titulo, AnoEdicion);
+    public Libro(String Editorial, int NumPaginas, String Titulo, int AnoEdicion, ArrayList listaArtistas_Obra) {
+        super(Titulo, AnoEdicion, listaArtistas_Obra);
         this.Editorial = Editorial;
         this.NumPaginas = NumPaginas;
     }
