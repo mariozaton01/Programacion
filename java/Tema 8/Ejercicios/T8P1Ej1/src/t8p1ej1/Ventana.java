@@ -5,6 +5,8 @@
  */
 package t8p1ej1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mario
@@ -59,7 +61,6 @@ public class Ventana extends javax.swing.JFrame {
         jLabel1.setText("Numero 1:");
 
         TNumeroUno.setEditable(false);
-        TNumeroUno.setText("jTextField1");
         TNumeroUno.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 TNumeroUnoPropertyChange(evt);
@@ -69,22 +70,31 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2.setText("+ Numero 2:");
 
         TNumeroDos.setEditable(false);
-        TNumeroDos.setText("jTextField1");
 
         jLabel3.setText("Intentos:");
 
         tIntentos.setEditable(false);
-        tIntentos.setText("jTextField1");
+        tIntentos.setText("0");
 
         jLabel4.setText("Aciertos:");
 
         tAciertos.setEditable(false);
-        tAciertos.setText("jTextField1");
+        tAciertos.setText("0");
+        tAciertos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tAciertosActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Fallos:");
 
         tFallos.setEditable(false);
-        tFallos.setText("jTextField1");
+        tFallos.setText("0");
+        tFallos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tFallosActionPerformed(evt);
+            }
+        });
 
         bActivar.setText("Activar");
         bActivar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +104,11 @@ public class Ventana extends javax.swing.JFrame {
         });
 
         bComprobar.setText("Comprobar");
+        bComprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bComprobarActionPerformed(evt);
+            }
+        });
 
         bSalir.setText("Salir");
         bSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -107,42 +122,40 @@ public class Ventana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(tIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(200, 200, 200)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TNumeroUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(bActivar)
-                                        .addComponent(jLabel4))
-                                    .addGap(20, 20, 20)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tAciertos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(bComprobar, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGap(35, 35, 35)
-                                    .addComponent(jLabel5))))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(TNumeroUno, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bActivar)
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TNumeroDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(tAciertos, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(tFallos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(33, 33, 33)
+                                .addComponent(bComprobar)))
+                        .addGap(19, 19, 19))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(376, 376, 376)
-                        .addComponent(bSalir)))
-                .addContainerGap(121, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(tIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(206, 206, 206)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(tFallos, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bSalir)
+                    .addComponent(TNumeroDos, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,6 +187,12 @@ public class Ventana extends javax.swing.JFrame {
 
     private void bActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActivarActionPerformed
         // TODO add your handling code here:
+        Integer numero1 = (int)(Math.random()*1000);
+        Integer numero2 = (int)(Math.random()*1000);
+        
+        TNumeroUno.setText(numero1.toString());
+        TNumeroDos.setText(numero2.toString());
+        
     }//GEN-LAST:event_bActivarActionPerformed
 
     private void TNumeroUnoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TNumeroUnoPropertyChange
@@ -182,8 +201,51 @@ public class Ventana extends javax.swing.JFrame {
 
     private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
         // TODO add your handling code here:
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        T8P1Ej1.salir();
     }//GEN-LAST:event_bSalirActionPerformed
+
+    private void tFallosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tFallosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tFallosActionPerformed
+
+    private void tAciertosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tAciertosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tAciertosActionPerformed
+
+    private void bComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComprobarActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(TNumeroUno.getText().isEmpty()){
+                throw new ExcepcionOrden();
+            }
+            intentos= intentos +1;
+            tIntentos.setText(intentos.toString());
+            int pregunta= Integer.parseInt(JOptionPane.showInputDialog("La suma es: "));
+            int suma= Integer.parseInt(TNumeroUno.getText()) + Integer.parseInt(TNumeroDos.getText());
+
+            if(suma!=pregunta){
+                fallos= fallos+1;
+                tFallos.setText(fallos.toString());
+                
+            }
+            if(suma==pregunta){
+                aciertos= aciertos +1;
+                tAciertos.setText(aciertos.toString());
+
+            }
+            
+        }
+        catch (ExcepcionOrden e){
+            JOptionPane.showMessageDialog(null, "Para comprobar primero hay  que generar numeros clickando en activar.");  
+        }
+        catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "El dato introducido debe ser numerico.");             
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Problemas");
+        }
+        
+    }//GEN-LAST:event_bComprobarActionPerformed
 
     /**
      * @param args the command line arguments
