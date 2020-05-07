@@ -29,6 +29,7 @@ public class VentanaMultas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        coche1 = new Clases.Coche();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -236,6 +237,7 @@ public class VentanaMultas extends javax.swing.JFrame {
     private javax.swing.JButton bSalir;
     private javax.swing.JButton bTipoMulta;
     private javax.swing.JComboBox<String> cbNumMulta;
+    private Clases.Coche coche1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
