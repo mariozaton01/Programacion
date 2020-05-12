@@ -35,9 +35,11 @@ public class Proveedor {
         return listaProductosOficiales;
     }
 
-    public void setListaProductosOficiales(Producto p) {
-        this.listaProductosOficiales.add(p);
+    public void setListaProductosOficiales(ArrayList<Producto> listaProductosOficiales) {
+        this.listaProductosOficiales = listaProductosOficiales;
     }
+
+    
 
     
    

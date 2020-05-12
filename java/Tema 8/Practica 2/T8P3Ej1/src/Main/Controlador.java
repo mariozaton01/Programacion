@@ -9,6 +9,8 @@ import Clases.*;
 import Ventanas.VentanaAlmacen;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,62 +31,87 @@ public class Controlador {
         valmacen.setVisible(true);
         valmacen.setLocationRelativeTo(null);
         valmacen.setTitle("CompraVenta de productos");
-        crearProductos();
-        crearProveedores();
-        relacionProductoProveedor();
-    }
-
-    private static void crearProductos() {
-        Producto p= new Producto();
-        p.setNombre("Patatas");
-        p.setPrecioUnitario(2.0);
-        p.setUnidades(500);
-        listaProductos = new ArrayList();
-        listaProductos.add(p);
-        
-        p= new Producto();
-        p.setNombre("Spaguettis");
-        p.setPrecioUnitario(1.70);
-        p.setUnidades(500);
-        listaProductos.add(p);
-        
-        p = new Producto();
-        p.setNombre("Macarrones");
-        p.setPrecioUnitario(1.85);
-        p.setUnidades(500);
-        
-        listaProductos.add(p);
+        crearObjetos();
         
     }
 
-    private static void crearProveedores() {
+    private static void crearObjetos() {
+        //Proveedores
         Proveedor prov= new Proveedor();
         prov.setNombre("Lays");
         listaProveedores= new ArrayList();
         listaProveedores.add(prov);
-        prov.setListaProductosOficiales(listaProductos.get(0));
+        
         
         prov= new Proveedor();
         prov.setNombre("Gallo");
         listaProveedores.add(prov);
-        prov.setListaProductosOficiales(listaProductos.get(1));
-        prov.setListaProductosOficiales(listaProductos.get(2));
+        
         
         prov= new Proveedor();
         prov.setNombre("Barilla");
         listaProveedores.add(prov);
-        prov.setListaProductosOficiales(listaProductos.get(1));
-        prov.setListaProductosOficiales(listaProductos.get(2));
-    }
-
-    private static void relacionProductoProveedor() {
-        listaProductos.get(0).setProveedores(listaProveedores.get(0));
         
-        listaProductos.get(1).setProveedores(listaProveedores.get(1));
-        listaProductos.get(1).setProveedores(listaProveedores.get(2));
+        //Productos
+        Producto p= new Producto();
+        p.setNombre("Patatas");
+        p.setPrecioUnitario(2.00f);
+        p.setUnidades(500);
         
-        listaProductos.get(2).setProveedores(listaProveedores.get(1));
-        listaProductos.get(2).setProveedores(listaProveedores.get(2));
+        ArrayList<Proveedor> proveedor = new ArrayList();       
+        proveedor.add(listaProveedores.get(1));
+        proveedor.add(listaProveedores.get(2));        
+        p.setProveedores(proveedor);
+         
+        listaProductos = new ArrayList();
+        listaProductos.add(p);
+        
+        
+        p= new Producto();
+        p.setNombre("Spaguettis");
+        p.setPrecioUnitario(1.70f);
+        p.setUnidades(500);
+        
+        proveedor= new ArrayList();
+        proveedor.add(listaProveedores.get(2));        
+        p.setProveedores(proveedor);
+        listaProductos.add(p);
+        
+        p = new Producto();
+        p.setNombre("Macarrones");
+        p.setPrecioUnitario(1.85f);
+        p.setUnidades(500);
+        
+        proveedor= new ArrayList();
+        proveedor.add(listaProveedores.get(0)); 
+        proveedor.add(listaProveedores.get(1)); 
+        proveedor.add(listaProveedores.get(2)); 
+        p.setProveedores(proveedor);
+        
+        
+ 
+        listaProductos.add(p);
+           
+        ArrayList <Producto> productos= new ArrayList();
+        productos.add(listaProductos.get(0));
+        productos.add(listaProductos.get(1));
+        productos.add(listaProductos.get(2));
+        listaProveedores.get(2).setListaProductosOficiales(productos);
+        
+        productos= new ArrayList();
+        productos.add(listaProductos.get(0));
+        productos.add(listaProductos.get(2));
+        listaProveedores.get(1).setListaProductosOficiales(productos);
+        
+        
+        productos= new ArrayList();
+        productos.add(listaProductos.get(2));
+        listaProveedores.get(0).setListaProductosOficiales(productos);
+       
+   
+        
+        
+        
     }
 
     public static String elegirProducto(String producto, String stock) {
@@ -106,17 +133,87 @@ public class Controlador {
         
     }
 
-    public static DefaultComboBoxModel rellenarComboBox(String producto, DefaultComboBoxModel cbmodelo) {
-       
-        int x;
-        int y;
-        for( x=0;x <listaProductos.size() && !producto.equalsIgnoreCase(listaProductos.get(x).getNombre());x++){}
-        if (x<listaProductos.size()){
-            for(y=0; y<listaProductos.get(x).getProveedores().size();y++){
-                cbmodelo.addElement(listaProductos.get(x).getProveedores().get(y).getNombre());
+    public static void rellenarComboBox(JComboBox combobox, String producto) {
+       combobox.removeAllItems();
+        for (int x = 0; x < listaProductos.size(); x++) {
+            if(producto.equalsIgnoreCase(listaProductos.get(x).getNombre())){    
+                for (int i = 0; i < listaProductos.get(x).getProveedores().size(); i++) {
+                    
+                    combobox.addItem(listaProductos.get(x).getProveedores().get(i).getNombre()); 
+                }
+                               
             }
+            
+            
         }
-        return cbmodelo;
+        
+    }
+
+    public static String setearPrecio(String producto, String precio, String unidades) {
+        try{
+            int x;   
+            String productos;
+            for(x=0;x<listaProductos.size() && !producto.equalsIgnoreCase(listaProductos.get(x).getNombre());x++){}
+            if (x<listaProductos.size()){ 
+                double unidad = Double.parseDouble(unidades);
+                
+               
+               precio=String.valueOf(String.format("%.2f",unidad*listaProductos.get(x).getPrecioUnitario()));
+            }
+            else
+                throw new Excepciones.ProductoNoExiste();
+        }
+        catch (Excepciones.ProductoNoExiste e){
+            JOptionPane.showMessageDialog(null, "No existe el producto, vuelve a intentarlo");   
+        }
+        return precio;
+    }
+
+    public static double calcularTotal(String precio, String unidades) {
+        double total=0;
+        try{
+            if(!precio.isEmpty()){
+                Double preci= Double.parseDouble(precio);
+                Double unidad= Double.parseDouble(unidades);
+                total= preci*unidad;
+            } 
+            else
+                throw new Excepciones.CampoVacio();
+            
+        }
+        catch (Excepciones.CampoVacio e){
+            JOptionPane.showMessageDialog(null, "El campo 'Precio' esta vacio, rellenalo");
+        }
+        return total;
+    }
+
+    public static void comprobarVacio(String unidades) {
+        try{
+            if(unidades.isEmpty())
+                throw new Excepciones.CampoVacio();
+        }
+        catch(Excepciones.CampoVacio e){
+            JOptionPane.showMessageDialog(null, "El campo 'Unidades' esta vacio, rellenalo.");
+        }
+    }
+
+    public static String aplicarDescuentoVolumen(JCheckBox checkbVolumen, String precio ) {
+        double total=0;
+        if (checkbVolumen.isSelected()){
+            double preci= Double.parseDouble(precio);
+            total= preci-preci*0.02;
+        }
+        
+        return String.valueOf(total);
+    }
+
+    public static String aplicarDescuentoPagoPronto(JCheckBox checkbProntoPago, String precio) {
+        double total=0;
+        if(checkbProntoPago.isSelected()){
+            double preci= Double.parseDouble(precio);
+            total= preci-preci*0.03;
+        }
+        return String.valueOf(total);
     }
 
     

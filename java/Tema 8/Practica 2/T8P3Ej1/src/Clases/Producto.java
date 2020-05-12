@@ -55,9 +55,11 @@ public class Producto {
         return Proveedores;
     }
 
-    public void setProveedores(Proveedor prov) {
-        this.Proveedores.add(prov);
+    public void setProveedores(ArrayList<Proveedor> Proveedores) {
+        this.Proveedores = Proveedores;
     }
+
+    
 
     
     
