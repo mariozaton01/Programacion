@@ -8,6 +8,7 @@ package Ventanas;
 import Main.Controlador;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -212,6 +213,11 @@ public class VentanaAlmacen extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descuentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 255))); // NOI18N
 
         checkbVolumen.setText("Por volumen");
+        checkbVolumen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                checkbVolumenMouseClicked(evt);
+            }
+        });
         checkbVolumen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkbVolumenActionPerformed(evt);
@@ -427,15 +433,15 @@ public class VentanaAlmacen extends javax.swing.JFrame {
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
-        dispose();
+        
+        Controlador.botonCancelar();
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void checkbVolumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkbVolumenActionPerformed
-        // TODO add your handling code here:
         String precio= "";
-        precio=Controlador.aplicarDescuentoVolumen(checkbVolumen, tPrecioVenta.getText());
+        precio=String.valueOf(Controlador.aplicarDescuentoVolumen(checkbVolumen, tPrecioVenta.getText()));
         tPrecioVenta.setText(precio);
+        
     }//GEN-LAST:event_checkbVolumenActionPerformed
 
     private void tPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tPrecioFocusLost
@@ -452,9 +458,14 @@ public class VentanaAlmacen extends javax.swing.JFrame {
     private void checkbProntoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkbProntoPagoActionPerformed
         // TODO add your handling code here:
         String precio= "";
-        precio=Controlador.aplicarDescuentoPagoPronto(checkbProntoPago, tPrecioVenta.getText());
+        precio=String.valueOf(Controlador.aplicarDescuentoPagoPronto(checkbProntoPago, tPrecioVenta.getText()));
         tPrecioVenta.setText(precio);
     }//GEN-LAST:event_checkbProntoPagoActionPerformed
+
+    private void checkbVolumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkbVolumenMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_checkbVolumenMouseClicked
 
     /**
      * @param args the command line arguments

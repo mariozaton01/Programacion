@@ -7,6 +7,7 @@ package Main;
 
 import Clases.*;
 import Ventanas.VentanaAlmacen;
+import Ventanas.vCancelar;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
@@ -22,6 +23,7 @@ public class Controlador {
     /**
      * @param args the command line arguments
      */private static VentanaAlmacen valmacen;
+     private static vCancelar cancelar; 
      private static ArrayList <Producto>listaProductos;
      private static ArrayList <Proveedor> listaProveedores;
      
@@ -118,15 +120,21 @@ public class Controlador {
         try{
             int x;   
             String productos;
+            if(producto.isEmpty())
+                throw new Excepciones.CampoVacio();
             for(x=0;x<listaProductos.size() && !producto.equalsIgnoreCase(listaProductos.get(x).getNombre());x++){}
             if (x<listaProductos.size()){                
                stock=String.valueOf(listaProductos.get(x).getUnidades());  
             }
+            
             else
                 throw new Excepciones.ProductoNoExiste();
         }
         catch (Excepciones.ProductoNoExiste e){
             JOptionPane.showMessageDialog(null, "No existe el producto, vuelve a intentarlo");   
+        }
+        catch( Excepciones.CampoVacio e){
+            JOptionPane.showMessageDialog(null, "El campo 'Producto esta vacio, rellenalo'");
         }
         
         return stock;
@@ -197,23 +205,38 @@ public class Controlador {
         }
     }
 
-    public static String aplicarDescuentoVolumen(JCheckBox checkbVolumen, String precio ) {
+    public static double aplicarDescuentoVolumen(JCheckBox checkbVolumen, String precio ) {
         double total=0;
-        if (checkbVolumen.isSelected()){
-            double preci= Double.parseDouble(precio);
-            total= preci-preci*0.02;
+        double preci=Double.parseDouble(precio);
+        double descuento=0;
+        if (checkbVolumen.isSelected()){ 
+            descuento= preci*0.02;
+            total= preci-descuento;
+            
         }
+        return total;
         
-        return String.valueOf(total);
     }
 
-    public static String aplicarDescuentoPagoPronto(JCheckBox checkbProntoPago, String precio) {
+    public static Double aplicarDescuentoPagoPronto(JCheckBox checkbProntoPago, String precio) {
         double total=0;
         if(checkbProntoPago.isSelected()){
             double preci= Double.parseDouble(precio);
             total= preci-preci*0.03;
         }
-        return String.valueOf(total);
+        return total;
+    }
+
+    public static void botonCancelar() {
+         cancelar = new vCancelar();
+        cancelar.setVisible(true);
+        cancelar.setLocationRelativeTo(null);
+    }
+
+    public static void limpiarPantalla() {
+        valmacen.removeAll();
+        valmacen.repaint();
+        //Este no lo hago, me da mucha pereza. setText(""); para todos los campos.
     }
 
     
