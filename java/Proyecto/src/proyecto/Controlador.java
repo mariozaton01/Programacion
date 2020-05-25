@@ -54,8 +54,8 @@ public class Controlador {
         bd= new Conexion();
         bd.conectar();
         ta= new TablaAlumnos(bd.getCon());
-        //tasig= new TablaAsignaturas(bd.getCon());
-        //trelacion = new tablaRelacion(bd.getCon());
+        tasig= new TablaAsignaturas(bd.getCon());
+        trelacion= new tablaRelacion(bd.getCon());
         vInicio = new VentanaInicio();
         
         
@@ -92,7 +92,7 @@ public class Controlador {
     
     //Metodos de la ventana vElegirAñadirRetirar
 
-    public static void bAñadir( ) {
+    public static void bAnadir( ) {
         try{
            
             LocalDate fechaInicioAltas;
@@ -203,6 +203,8 @@ public class Controlador {
 
     public static void insertar(Alumno alum)throws Exception {
         ta.insertar(alum);
+        String dni= alum.getDNI();
+        trelacion=
     }
 
     public static boolean comprobarDNIenBD(String dni)throws Exception {
@@ -250,17 +252,33 @@ public class Controlador {
         return texto;
     }
 
-    public static void comprobarDNIconRelacion(int selectedIndex)throws Exception {
+    public static void comprobardniconRelacion(int selectedIndex)throws Exception {
+        
         String dni= listaAlum.get(selectedIndex).getDNI();
+        listaAsig= new ArrayList();
+        
         listaAsig=trelacion.comprobarAlumno(dni);
         tasig.conseguirNombre(listaAsig);
     }
 
     public static void asignarAsignaturas(JComboBox combobox) {
+        combobox.removeAllItems();
         for (int x = 0; x < listaAsig.size(); x++) {
             String asignatura= listaAsig.get(x).getNombre();
             combobox.addItem(asignatura);
         }
+    }
+
+    public static void borrarAsig(int selectedIndex, int selectedIndex0, JComboBox cbAsig) {
+        String dni= listaAlum.get(selectedIndex).getDNI();
+        int id_asig= listaAsig.get(selectedIndex0).getID();
+        try {
+            trelacion.renunciarAsig(dni, id_asig);
+        } catch (Exception ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+       
     }
 
       

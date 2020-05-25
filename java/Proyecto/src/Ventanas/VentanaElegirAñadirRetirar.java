@@ -143,7 +143,7 @@ public class VentanaElegirAñadirRetirar extends javax.swing.JFrame {
 
     private void bAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAñadirActionPerformed
         // TODO add your handling code here:
-        proyecto.Controlador.bAñadir();
+        proyecto.Controlador.bAnadir();
         
     }//GEN-LAST:event_bAñadirActionPerformed
 

@@ -395,6 +395,8 @@ public class VentanaAñadirRetirarAlum extends javax.swing.JFrame {
                                             try {
                                                 if(proyecto.Controlador.comprobarDNIenBD(tDNI.getText())==false){
                                                     proyecto.Controlador.insertar(alum);
+                                                    
+                                                    
                                                     JOptionPane.showMessageDialog(null, "El alumno ha sido añadido con exito");
                                                     
                                                     Controlador.volverInicio(this);

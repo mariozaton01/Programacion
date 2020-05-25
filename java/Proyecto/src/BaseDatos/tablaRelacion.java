@@ -25,7 +25,7 @@ public class tablaRelacion {
   
     public ArrayList<Asignatura> comprobarAlumno(String dni)throws Exception {
         ArrayList <Asignatura> listaAsigdeAlum= new ArrayList();
-       String plantilla="SELECT ID_Asignatura from relacionalumasig WHERE DNI_Alumno=?;";
+       String plantilla="SELECT ID_Asignatura from relacionalumasig WHERE DNI_Alumno=? ORDER BY ID_Asignatura;";
         PreparedStatement ps= con.prepareStatement(plantilla);
         ps.setString(1, dni);
         
@@ -38,6 +38,19 @@ public class tablaRelacion {
     }
         return listaAsigdeAlum;
             
+    }
+
+    public void renunciarAsig(String dni, int id_asig)throws Exception {
+        String plantilla = "DELETE FROM relacionalumasig WHERE DNI_Alumno=? AND ID_Asignatura=?;";
+        PreparedStatement ps= con.prepareStatement(plantilla);
+        ps.setString(1, dni);
+        ps.setInt(2, id_asig);
+        
+        int n=ps.executeUpdate();
+        ps.close();
+        
+        if(n!=1)
+            throw new Exception("El numero de filas borradas no es uno");
     }
     }
 

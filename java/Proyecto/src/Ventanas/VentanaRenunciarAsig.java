@@ -22,9 +22,7 @@ public class VentanaRenunciarAsig extends javax.swing.JFrame {
         initComponents();
         try {
             Controlador.listaAlumnos(cbAlumno);
-            Controlador.comprobarDNIconRelacion(cbAlumno.getSelectedIndex());
-            
-            
+    
         } catch (Exception ex) {
             Logger.getLogger(VentanaRenunciarAsig.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,6 +37,7 @@ public class VentanaRenunciarAsig extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -47,6 +46,9 @@ public class VentanaRenunciarAsig extends javax.swing.JFrame {
         cbAsignatura = new javax.swing.JComboBox<>();
         bRenunciar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
+        bComprobar = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,23 +59,35 @@ public class VentanaRenunciarAsig extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel2.setText("Alumno:");
 
-        cbAlumno.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                cbAlumnoPropertyChange(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel3.setText("Asignatura: ");
 
+        cbAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAsignaturaActionPerformed(evt);
+            }
+        });
+
         bRenunciar.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         bRenunciar.setText("Renunciar");
+        bRenunciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRenunciarActionPerformed(evt);
+            }
+        });
 
         bCancelar.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         bCancelar.setText("Cancelar");
         bCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bCancelarActionPerformed(evt);
+            }
+        });
+
+        bComprobar.setText("Comprobar asignaturas");
+        bComprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bComprobarActionPerformed(evt);
             }
         });
 
@@ -86,6 +100,8 @@ public class VentanaRenunciarAsig extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(bComprobar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,8 +113,8 @@ public class VentanaRenunciarAsig extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(bRenunciar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(75, 75, 75)
@@ -111,11 +127,12 @@ public class VentanaRenunciarAsig extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(jLabel1)
-                .addGap(59, 59, 59)
+                .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bComprobar))
+                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cbAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,10 +166,20 @@ public class VentanaRenunciarAsig extends javax.swing.JFrame {
         proyecto.Controlador.bCancelar(this);
     }//GEN-LAST:event_bCancelarActionPerformed
 
-    private void cbAlumnoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbAlumnoPropertyChange
+    private void bComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComprobarActionPerformed
+        reasignarAsig();
+    }//GEN-LAST:event_bComprobarActionPerformed
+
+    private void cbAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAsignaturaActionPerformed
         // TODO add your handling code here:
-        Controlador.asignarAsignaturas(cbAsignatura);
-    }//GEN-LAST:event_cbAlumnoPropertyChange
+        
+    }//GEN-LAST:event_cbAsignaturaActionPerformed
+
+    private void bRenunciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRenunciarActionPerformed
+        // TODO add your handling code here:
+        Controlador.borrarAsig(cbAlumno.getSelectedIndex(), cbAsignatura.getSelectedIndex(),cbAsignatura);
+        reasignarAsig();
+    }//GEN-LAST:event_bRenunciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,12 +215,25 @@ public class VentanaRenunciarAsig extends javax.swing.JFrame {
             }
         });
     }
+    public void reasignarAsig(){
+        try {
+            // TODO add your handling code here:
+            Controlador.comprobardniconRelacion(cbAlumno.getSelectedIndex());
+        } catch (Exception ex) {
+            System.out.print(ex.getMessage());
+        }
+            
+        
+        Controlador.asignarAsignaturas(cbAsignatura);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCancelar;
+    private javax.swing.JButton bComprobar;
     private javax.swing.JButton bRenunciar;
     private javax.swing.JComboBox<String> cbAlumno;
     private javax.swing.JComboBox<String> cbAsignatura;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
