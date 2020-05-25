@@ -18,7 +18,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -204,7 +206,9 @@ public class Controlador {
     public static void insertar(Alumno alum)throws Exception {
         ta.insertar(alum);
         String dni= alum.getDNI();
-        trelacion=
+        ArrayList <Asignatura> asignaturasDeAlumNuevo= new ArrayList();
+        asignaturasDeAlumNuevo=tasig.seleccionarAsignaturas(asignaturasDeAlumNuevo);
+        trelacion.insertarAsignaturas(dni, asignaturasDeAlumNuevo);
     }
 
     public static boolean comprobarDNIenBD(String dni)throws Exception {
@@ -255,8 +259,7 @@ public class Controlador {
     public static void comprobardniconRelacion(int selectedIndex)throws Exception {
         
         String dni= listaAlum.get(selectedIndex).getDNI();
-        listaAsig= new ArrayList();
-        
+        listaAsig= new ArrayList();       
         listaAsig=trelacion.comprobarAlumno(dni);
         tasig.conseguirNombre(listaAsig);
     }
@@ -281,7 +284,40 @@ public class Controlador {
        
     }
 
-      
+    public static void setearTexto(JTextArea textarea) {
+        String texto="";
+        String asignatura;
+        for (int x = listaAsig.size()-1; x>=0; x--) {
+            asignatura= listaAsig.get(x).getNombre();
+            texto=asignatura +"\n"+texto;
+        }
+        textarea.setText(texto);
+        
+    }
+
+    public static void conseguirListaAlum(JMenuItem menuProgramacion, JTextArea textArea) {
+        String nombreAsig= menuProgramacion.getText();
+        try {
+            int codigoAsig=tasig.conseguirNombreAsig(nombreAsig);
+            ArrayList<Alumno> listaalumnos= new ArrayList();
+        listaalumnos=trelacion.conseguirDNIalum(codigoAsig,listaalumnos);
+        
+        ArrayList <Alumno>listaOrdenada= new ArrayList();
+        listaOrdenada=ta.seleccionarNombreAlumno(listaalumnos,listaOrdenada);//preguntar como ordenar el arraylist alfabeticamente
+        
+        String texto="";
+            for (int i = 0; i < listaOrdenada.size(); i++) {
+                String nombre= listaOrdenada.get(i).getNombre()+" "+ listaOrdenada.get(i).getApellido();
+                texto= nombre +"\n"+ texto;
+            }
+            textArea.setText(texto);
+        
+        } catch (Exception ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
     }
     
 

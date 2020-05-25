@@ -6,6 +6,7 @@
 package Ventanas;
 
 import javax.swing.JOptionPane;
+import proyecto.Controlador;
 
 /**
  *
@@ -30,26 +31,26 @@ public class VentanaAlumnoPorAsignatura extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textArea = new javax.swing.JTextArea();
         bVolver = new javax.swing.JButton();
         bAyuda = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        menuProgramacion = new javax.swing.JMenuItem();
+        menuSistemas = new javax.swing.JMenuItem();
+        menuBases = new javax.swing.JMenuItem();
+        menuEntornos = new javax.swing.JMenuItem();
+        menuIngles = new javax.swing.JMenuItem();
+        menuFol = new javax.swing.JMenuItem();
+        menuLenguajes = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textArea.setEditable(false);
+        textArea.setColumns(20);
+        textArea.setRows(5);
+        jScrollPane1.setViewportView(textArea);
 
         bVolver.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         bVolver.setText("Volver atras");
@@ -72,36 +73,61 @@ public class VentanaAlumnoPorAsignatura extends javax.swing.JFrame {
 
         jMenu1.setText("Asignaturas");
 
-        jMenuItem1.setText("Programacion");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuProgramacion.setText("Programacion");
+        menuProgramacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuProgramacionActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(menuProgramacion);
 
-        jMenuItem2.setText("Sistemas");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuSistemas.setText("Sistemas");
+        menuSistemas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuSistemasActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(menuSistemas);
 
-        jMenuItem3.setText("Base de Datos");
-        jMenu1.add(jMenuItem3);
+        menuBases.setText("Base de Datos");
+        menuBases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBasesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuBases);
 
-        jMenuItem4.setText("Entornos de Desarrollo");
-        jMenu1.add(jMenuItem4);
+        menuEntornos.setText("Entornos de Desarrollo");
+        menuEntornos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEntornosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuEntornos);
 
-        jMenuItem5.setText("Ingles");
-        jMenu1.add(jMenuItem5);
+        menuIngles.setText("Ingles");
+        menuIngles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInglesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuIngles);
 
-        jMenuItem6.setText("FOL");
-        jMenu1.add(jMenuItem6);
+        menuFol.setText("FOL");
+        menuFol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFolActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuFol);
 
-        jMenuItem7.setText("Lenguaje de Marcas");
-        jMenu1.add(jMenuItem7);
+        menuLenguajes.setText("Lenguaje de Marcas");
+        menuLenguajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLenguajesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuLenguajes);
 
         jMenuBar1.add(jMenu1);
 
@@ -147,13 +173,15 @@ public class VentanaAlumnoPorAsignatura extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuProgramacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProgramacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        Controlador.conseguirListaAlum(menuProgramacion, textArea);
+    }//GEN-LAST:event_menuProgramacionActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void menuSistemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSistemasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        Controlador.conseguirListaAlum(menuSistemas, textArea);
+    }//GEN-LAST:event_menuSistemasActionPerformed
 
     private void bVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolverActionPerformed
         // TODO add your handling code here:
@@ -164,6 +192,31 @@ public class VentanaAlumnoPorAsignatura extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Para buscar abre el menu de arriba a la izquierda y selecciona una asignatura.");
     }//GEN-LAST:event_bAyudaActionPerformed
+
+    private void menuLenguajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLenguajesActionPerformed
+        // TODO add your handling code here:
+        Controlador.conseguirListaAlum(menuLenguajes, textArea);
+    }//GEN-LAST:event_menuLenguajesActionPerformed
+
+    private void menuBasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBasesActionPerformed
+        // TODO add your handling code here:
+        Controlador.conseguirListaAlum(menuBases, textArea);
+    }//GEN-LAST:event_menuBasesActionPerformed
+
+    private void menuEntornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEntornosActionPerformed
+        // TODO add your handling code here:
+        Controlador.conseguirListaAlum(menuEntornos, textArea);
+    }//GEN-LAST:event_menuEntornosActionPerformed
+
+    private void menuInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInglesActionPerformed
+        // TODO add your handling code here:
+        Controlador.conseguirListaAlum(menuIngles, textArea);
+    }//GEN-LAST:event_menuInglesActionPerformed
+
+    private void menuFolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFolActionPerformed
+        // TODO add your handling code here:
+        Controlador.conseguirListaAlum(menuFol, textArea);
+    }//GEN-LAST:event_menuFolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,14 +259,14 @@ public class VentanaAlumnoPorAsignatura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JMenuItem menuBases;
+    private javax.swing.JMenuItem menuEntornos;
+    private javax.swing.JMenuItem menuFol;
+    private javax.swing.JMenuItem menuIngles;
+    private javax.swing.JMenuItem menuLenguajes;
+    private javax.swing.JMenuItem menuProgramacion;
+    private javax.swing.JMenuItem menuSistemas;
+    private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 }

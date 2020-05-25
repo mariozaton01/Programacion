@@ -52,5 +52,37 @@ public class tablaRelacion {
         if(n!=1)
             throw new Exception("El numero de filas borradas no es uno");
     }
+
+    public void insertarAsignaturas(String dni, ArrayList <Asignatura> asignaturas)throws Exception {
+        String plantilla= "INSERT INTO relacionalumasig VALUES(?,?);";
+        for (int x = 0; x < asignaturas.size(); x++) {
+            
+            PreparedStatement ps= con.prepareStatement(plantilla);
+           ps.setString(1, dni);
+           ps.setInt(2,asignaturas.get(x).getID());
+           
+           int n = ps.executeUpdate();
+            ps.close();
+        }
+           
+           
+    }
+
+    public ArrayList<Alumno> conseguirDNIalum(int codigoAsig,ArrayList<Alumno> listaalumnos)throws Exception {
+        String plantilla= "SELECT DNI_Alumno from relacionalumasig WHERE ID_Asignatura=?;";//mirar/confirmar error clase program
+        
+            PreparedStatement ps= con.prepareStatement(plantilla);
+        ps.setInt(1, codigoAsig);
+        
+        ResultSet resultado= ps.executeQuery();
+        
+        while(resultado.next()){
+            Alumno alum= new Alumno();
+            alum.setDNI(resultado.getString("DNI_Alumno"));
+            listaalumnos.add(alum);
+        }
+        
+        return listaalumnos;
+    }
     }
 

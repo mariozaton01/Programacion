@@ -5,6 +5,10 @@
  */
 package Ventanas;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import proyecto.Controlador;
+
 /**
  *
  * @author mario
@@ -16,6 +20,12 @@ public class VentanaAsignaturasaDeAlumno extends javax.swing.JFrame {
      */
     public VentanaAsignaturasaDeAlumno() {
         initComponents();
+        try {
+            Controlador.listaAlumnos(cbAlumno);
+    
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaRenunciarAsig.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -30,9 +40,9 @@ public class VentanaAsignaturasaDeAlumno extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbAlumno = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textarea = new javax.swing.JTextArea();
         bVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,12 +53,16 @@ public class VentanaAsignaturasaDeAlumno extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel2.setText("Alumno:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbAlumno.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbAlumnoItemStateChanged(evt);
+            }
+        });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textarea.setEditable(false);
+        textarea.setColumns(20);
+        textarea.setRows(5);
+        jScrollPane1.setViewportView(textarea);
 
         bVolver.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         bVolver.setText("Volver atras");
@@ -68,7 +82,7 @@ public class VentanaAsignaturasaDeAlumno extends javax.swing.JFrame {
                         .addGap(248, 248, 248)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(194, 194, 194)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,7 +102,7 @@ public class VentanaAsignaturasaDeAlumno extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -118,6 +132,16 @@ public class VentanaAsignaturasaDeAlumno extends javax.swing.JFrame {
         // TODO add your handling code here:
         proyecto.Controlador.bCancelar(this);
     }//GEN-LAST:event_bVolverActionPerformed
+
+    private void cbAlumnoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAlumnoItemStateChanged
+        try {
+            // TODO add your handling code here:
+            Controlador.comprobardniconRelacion(cbAlumno.getSelectedIndex());
+            Controlador.setearTexto(textarea);
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaAsignaturasaDeAlumno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cbAlumnoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -156,11 +180,11 @@ public class VentanaAsignaturasaDeAlumno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bVolver;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbAlumno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea textarea;
     // End of variables declaration//GEN-END:variables
 }

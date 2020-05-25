@@ -83,4 +83,24 @@ public class TablaAlumnos {
         }
         return listaAlum;
     }
+
+    public ArrayList<Alumno> seleccionarNombreAlumno(ArrayList<Alumno> listaalumnos,ArrayList<Alumno> listaordenada)throws Exception {
+       
+        String plantilla= "SELECT Nombre, Apellido,DNI FROM alumnos WHERE DNI=? ORDER BY Apellido;";//no ordena por apellido por que solo devuelveuna fila. preguntar 
+        //como ordenar el arraylist mañana.
+        for (int x = 0; x < listaalumnos.size(); x++) {
+            PreparedStatement ps= con.prepareStatement(plantilla);
+            ps.setString(1, listaalumnos.get(x).getDNI());
+            
+            ResultSet resultado= ps.executeQuery();
+            if(resultado.next()){
+                Alumno alum= new Alumno();
+                alum.setNombre(resultado.getString("Nombre"));
+                alum.setApellido(resultado.getString("Apellido"));
+                alum.setDNI(resultado.getString("DNI"));
+                listaordenada.add(alum);
+            }
+        }
+        return listaordenada;
+    }
 }
